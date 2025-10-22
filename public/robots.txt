@@ -1,0 +1,16 @@
+# public/robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://nestcraft.com/sitemap.xml
+
+# Allow search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /private/

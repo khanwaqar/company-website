@@ -1,7 +1,7 @@
 // components/Services.jsx
 import { motion } from 'framer-motion'
 import { FaCode, FaRocket, FaMobile, FaCloud, FaShieldAlt, FaCog } from 'react-icons/fa'
-import { TechBackgrounds, applyBackground } from '../components/Backgrounds'
+import { applyBackground } from '../components/Backgrounds'
 
 export default function Services() {
   const services = [
@@ -44,17 +44,17 @@ export default function Services() {
   ]
 
   return (
-     <section 
+    <section 
       id="services" 
       className="py-20 relative overflow-hidden"
       style={applyBackground('services')}
     >
-       {/* Animated Circuit Elements */}
+      {/* Animated Brand Elements */}
       <div className="absolute inset-0">
         {Array.from({ length: 15 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-3 h-3 border-2 border-blue-300/20 rounded-full"
+            className="absolute w-3 h-3 border-2 border-orange-300/30 rounded-full"
             style={{
               left: `${10 + (i * 6)}%`,
               top: `${20 + Math.cos(i) * 60}%`,
@@ -81,7 +81,7 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Services</span>
+            Our <span className="bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">Services</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Comprehensive development services to transform your ideas into powerful digital solutions
@@ -97,12 +97,12 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-blue-200 hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
+              className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 hover:border-orange-200 hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
             >
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-blue-500"></div>
-                <div className="absolute bottom-2 left-2 w-8 h-8 border-l-2 border-b-2 border-purple-500"></div>
+                <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-orange-500"></div>
+                <div className="absolute bottom-2 left-2 w-8 h-8 border-l-2 border-b-2 border-blue-500"></div>
               </div>
               
               <div className="relative z-10">
@@ -110,14 +110,14 @@ export default function Services() {
                 <div className="mb-6">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center transition-transform duration-300 shadow-lg"
+                    className="w-16 h-16 bg-gradient-to-r from-orange-500 to-blue-500 rounded-2xl flex items-center justify-center transition-transform duration-300 shadow-lg"
                   >
                     <service.icon className="w-8 h-8 text-white" />
                   </motion.div>
                 </div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-200">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors duration-200">
                   {service.title}
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
@@ -134,7 +134,7 @@ export default function Services() {
                       transition={{ duration: 0.3, delay: featureIndex * 0.1 }}
                       className="flex items-center text-gray-700"
                     >
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 flex-shrink-0"></div>
                       <span className="text-sm">{feature}</span>
                     </motion.li>
                   ))}
@@ -151,7 +151,7 @@ export default function Services() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 max-w-4xl mx-auto border border-blue-100">
+          <div className="bg-gradient-to-r from-orange-50 to-blue-50 rounded-2xl p-8 max-w-4xl mx-auto border border-orange-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Ready to Start Your Project?
             </h3>
@@ -162,7 +162,7 @@ export default function Services() {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200 shadow-md"
+              className="inline-block bg-gradient-to-r from-orange-500 to-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200 shadow-md"
             >
               Get Free Consultation
             </motion.a>

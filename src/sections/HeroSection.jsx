@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import { FaArrowRight, FaPlay, FaCode, FaServer, FaCloud } from 'react-icons/fa'
 import { applyBackground } from '../components/Backgrounds'
+import Logo from '../components/Logo'
 
 export default function Hero() {
   const features = [
@@ -18,11 +19,11 @@ export default function Hero() {
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Tech Particles */}
+        {/* Floating Brand Particles */}
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-blue-400/20 rounded-full"
+            className="absolute w-2 h-2 bg-orange-400/30 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -39,12 +40,12 @@ export default function Hero() {
           />
         ))}
         
-        {/* Animated Grid Lines */}
+        {/* Brand-colored Grid Lines */}
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" viewBox="0 0 100 100">
             <defs>
               <pattern id="animatedGrid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M10 0H0v10" fill="none" stroke="#3b82f6" strokeWidth="0.3"/>
+                <path d="M10 0H0v10" fill="none" stroke="#fb923c" strokeWidth="0.3"/>
               </pattern>
             </defs>
             <rect width="100" height="100" fill="url(#animatedGrid)">
@@ -67,7 +68,7 @@ export default function Hero() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6"
+              className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-orange-200/30 rounded-full px-4 py-2 mb-6"
             >
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               <span className="text-sm font-medium text-white">Available for new projects</span>
@@ -79,9 +80,8 @@ export default function Hero() {
               transition={{ delay: 0.3 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
             >
-              Build Digital 
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"> Products</span> 
-              That Scale
+              We Craft Your
+              <span className="bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent"> Digital Nest</span>
             </motion.h1>
 
             <motion.p
@@ -90,8 +90,8 @@ export default function Hero() {
               transition={{ delay: 0.4 }}
               className="text-xl text-gray-300 mb-8 leading-relaxed"
             >
-              We help startups and businesses build modern, scalable web applications 
-              with cutting-edge technology and expert engineering.
+              Affordable web and app development solutions that help your business grow. 
+              From startups to enterprises, we build digital homes for your ideas.
             </motion.p>
 
             {/* Feature List */}
@@ -102,8 +102,8 @@ export default function Hero() {
               className="flex flex-wrap gap-4 mb-8 justify-center lg:justify-start"
             >
               {features.map((feature, index) => (
-                <div key={index} className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/20">
-                  <feature.icon className="w-4 h-4 text-cyan-400" />
+                <div key={index} className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg border border-orange-200/30">
+                  <feature.icon className="w-4 h-4 text-orange-400" />
                   <span className="text-gray-300 font-medium text-sm">{feature.text}</span>
                 </div>
               ))}
@@ -120,9 +120,9 @@ export default function Hero() {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-2xl transition-all duration-200 flex items-center space-x-2 group shadow-lg"
+                className="bg-gradient-to-r from-orange-500 to-blue-500 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-2xl transition-all duration-200 flex items-center space-x-2 group shadow-lg"
               >
-                <span>Start Project</span>
+                <span>Start Your Project</span>
                 <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </motion.a>
               
@@ -130,10 +130,10 @@ export default function Hero() {
                 href="#portfolio"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg font-semibold border border-white/20 hover:bg-white/20 transition-all duration-200 flex items-center space-x-2"
+                className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg font-semibold border border-orange-200/30 hover:bg-orange-500/20 transition-all duration-200 flex items-center space-x-2"
               >
                 <FaPlay className="w-4 h-4" />
-                <span>View Work</span>
+                <span>View Our Work</span>
               </motion.a>
             </motion.div>
 
@@ -157,18 +157,24 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Tech Illustration */}
+          {/* Right Content - Brand Illustration */}
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="relative"
           >
-            {/* Main Tech Illustration */}
-            <div className="relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl">
-              {/* Server Dashboard */}
-              <div className="bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-2xl p-6 border border-white/10">
-                <div className="grid grid-cols-3 gap-3 mb-4">
+            {/* Main Brand Illustration */}
+            <div className="relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-orange-200/30 shadow-2xl">
+              {/* Nest Illustration */}
+              <div className="bg-gradient-to-br from-orange-500/20 to-blue-500/20 rounded-2xl p-8 border border-orange-200/30">
+                {/* Logo Center */}
+                <div className="flex justify-center mb-6">
+                  <Logo variant="icon" size="xl" />
+                </div>
+                
+                {/* Server Status */}
+                <div className="grid grid-cols-3 gap-3 mb-6">
                   {[1, 2, 3].map(i => (
                     <div key={i} className="bg-white/10 rounded-lg p-3 backdrop-blur-sm">
                       <div className="flex space-x-1 mb-2 justify-center">
@@ -188,7 +194,7 @@ export default function Hero() {
                 </div>
                 
                 {/* Code Terminal */}
-                <div className="bg-black/40 rounded-lg p-4 font-mono text-sm border border-white/10">
+                <div className="bg-black/40 rounded-lg p-4 font-mono text-sm border border-orange-200/30">
                   <div className="flex space-x-2 mb-3">
                     <div className="w-2 h-2 bg-red-400 rounded-full"></div>
                     <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
@@ -196,13 +202,30 @@ export default function Hero() {
                   </div>
                   <div className="space-y-1">
                     <div className="text-green-400 flex">
-                      <span className="text-gray-400 mr-2">$</span> npm run dev
+                      <span className="text-gray-400 mr-2">$</span> nestcraft build
                     </div>
-                    <div className="text-blue-400">→ Ready on http://localhost:3000</div>
-                    <div className="text-gray-400">✓ Compiled successfully</div>
+                    <div className="text-blue-400">→ Building your digital nest...</div>
+                    <div className="text-orange-400">✓ Ready for deployment</div>
                   </div>
                 </div>
               </div>
+
+              {/* Floating Elements */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute -top-4 -left-4 bg-orange-500 rounded-xl p-3 shadow-lg"
+              >
+                <FaCode className="w-4 h-4 text-white" />
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+                className="absolute -bottom-4 -right-4 bg-blue-500 rounded-xl p-3 shadow-lg"
+              >
+                <FaCloud className="w-4 h-4 text-white" />
+              </motion.div>
             </div>
           </motion.div>
         </div>

@@ -6,10 +6,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
   
   const socialLinks = [
-    { icon: FaLinkedin, href: "https://linkedin.com/in/yourprofile", label: "LinkedIn" },
-    { icon: FaGithub, href: "https://github.com/yourusername", label: "GitHub" },
-    { icon: FaTwitter, href: "https://twitter.com/yourhandle", label: "Twitter" },
-    { icon: FaEnvelope, href: "mailto:hello@devnest.com", label: "Email" }
+    { icon: FaLinkedin, href: "https://linkedin.com/company/nestcraft", label: "LinkedIn" },
+    { icon: FaGithub, href: "https://github.com/nestcraft", label: "GitHub" },
+    { icon: FaTwitter, href: "https://twitter.com/nestcraft", label: "Twitter" },
+    { icon: FaEnvelope, href: "mailto:hello@nestcraft.com", label: "Email" }
   ]
 
   const quickLinks = [
@@ -21,7 +21,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
+    <footer className="bg-neutral-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
@@ -32,16 +32,16 @@ export default function Footer() {
               transition={{ duration: 0.5 }}
               className="flex items-center space-x-3 mb-6"
             >
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-lg">D</span>
+              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-lg">N</span>
               </div>
-              <span className="text-2xl font-bold text-white">DevNest</span>
+              <span className="text-2xl font-bold text-white">Nest Craft</span>
             </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-gray-400 mb-6 max-w-md"
+              className="text-neutral-400 mb-6 max-w-md"
             >
               We build digital products that help businesses grow and succeed in the modern world through innovative technology solutions.
             </motion.p>
@@ -58,7 +58,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className="bg-gray-800 p-3 rounded-lg hover:bg-blue-600 transition-colors duration-200"
+                  className="bg-neutral-800 p-3 rounded-lg hover:bg-orange-500 transition-colors duration-200"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -92,7 +92,7 @@ export default function Footer() {
                 >
                   <a 
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 hover:underline"
+                    className="text-neutral-400 hover:text-white transition-colors duration-200 hover:underline"
                   >
                     {link.name}
                   </a>
@@ -115,11 +115,11 @@ export default function Footer() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="space-y-3 text-gray-400"
+              className="space-y-3 text-neutral-400"
             >
               <p>
-                <a href="mailto:hello@devnest.com" className="hover:text-white transition-colors duration-200">
-                  hello@devnest.com
+                <a href="mailto:hello@nestcraft.com" className="hover:text-orange-400 transition-colors duration-200">
+                  hello@nestcraft.com
                 </a>
               </p>
               <p>+1 (555) 123-4567</p>
@@ -128,7 +128,7 @@ export default function Footer() {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 mt-4"
+                className="inline-block bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 mt-4 shadow-md"
               >
                 Start a Project
               </motion.a>
@@ -141,18 +141,18 @@ export default function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+          className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
         >
-          <div className="text-gray-400 text-sm">
-            © {currentYear} DevNest. All rights reserved.
+          <div className="text-neutral-400 text-sm">
+            © {currentYear} Nest Craft Solutions. All rights reserved.
           </div>
-          <div className="text-gray-400 text-sm">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">
+          <div className="text-neutral-400 text-sm">
+            <span className="bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent font-semibold">
               Build. Ship. Scale.
             </span>
           </div>
-          <div className="text-gray-400 text-sm">
-            Crafted with ❤️ by DevNest
+          <div className="text-neutral-400 text-sm">
+            Crafted with ❤️ by Nest Craft
           </div>
         </motion.div>
       </div>

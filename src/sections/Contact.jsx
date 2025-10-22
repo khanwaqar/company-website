@@ -80,11 +80,11 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Let's Build Something <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Amazing</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+            Let's Build Something <span className="bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">Amazing</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Ready to start your project? Book a free consultation or send me your requirements.
+          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            Ready to start your project? Book a free consultation or send us your requirements.
           </p>
         </motion.div>
 
@@ -97,54 +97,54 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
-              <p className="text-gray-600 mb-8">
+              <h3 className="text-2xl font-bold text-neutral-900 mb-6">Get In Touch</h3>
+              <p className="text-neutral-600 mb-8">
                 Have an idea? Let's discuss how we can turn it into a successful digital product. 
-                I typically respond within 2-4 hours during business days.
+                We typically respond within 2-4 hours during business days.
               </p>
             </div>
 
             {/* Contact Methods */}
             <div className="space-y-6">
-              <div className="flex items-center space-x-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/50">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <FaEnvelope className="w-6 h-6 text-blue-600" />
+              <div className="flex items-center space-x-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-neutral-200/50">
+                <div className="bg-orange-100 p-3 rounded-lg">
+                  <FaEnvelope className="w-6 h-6 text-orange-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Email</h4>
-                  <a href="mailto:hello@devnest.com" className="text-gray-600 hover:text-blue-600 transition-colors">
-                    hello@devnest.com
+                  <h4 className="font-semibold text-neutral-900">Email</h4>
+                  <a href="mailto:hello@nestcraft.com" className="text-neutral-600 hover:text-orange-600 transition-colors">
+                    hello@nestcraft.com
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/50">
+              <div className="flex items-center space-x-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-neutral-200/50">
                 <div className="bg-blue-100 p-3 rounded-lg">
                   <FaCalendarAlt className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Free Consultation</h4>
-                  <p className="text-gray-600">15-30 minute discovery call</p>
+                  <h4 className="font-semibold text-neutral-900">Free Consultation</h4>
+                  <p className="text-neutral-600">15-30 minute discovery call</p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-gray-200/50">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <FaMapMarkerAlt className="w-6 h-6 text-blue-600" />
+              <div className="flex items-center space-x-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-neutral-200/50">
+                <div className="bg-orange-100 p-3 rounded-lg">
+                  <FaMapMarkerAlt className="w-6 h-6 text-orange-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">Location</h4>
-                  <p className="text-gray-600">Remote - Worldwide</p>
+                  <h4 className="font-semibold text-neutral-900">Location</h4>
+                  <p className="text-neutral-600">Remote - Worldwide</p>
                 </div>
               </div>
             </div>
 
             {/* Consultation Types */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-              <h4 className="font-semibold text-gray-900 mb-4">Quick Connect Options</h4>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-neutral-200/50">
+              <h4 className="font-semibold text-neutral-900 mb-4">Quick Connect Options</h4>
               <div className="space-y-3">
                 {consultationTimes.map((time, index) => (
-                  <div key={index} className="flex items-center space-x-3 text-gray-600">
+                  <div key={index} className="flex items-center space-x-3 text-neutral-600">
                     <FaCheck className="w-4 h-4 text-green-500" />
                     <span>{time}</span>
                   </div>
@@ -160,10 +160,10 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
           >
             {!isSent ? (
-              <form onSubmit={handleSubmit} className="space-y-6 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-sm">
+              <form onSubmit={handleSubmit} className="space-y-6 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-neutral-200/50 shadow-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
                       Your Name *
                     </label>
                     <input
@@ -173,12 +173,12 @@ export default function Contact() {
                       required
                       value={formState.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
                       placeholder="John Doe"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
                       Email Address *
                     </label>
                     <input
@@ -188,7 +188,7 @@ export default function Contact() {
                       required
                       value={formState.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
                       placeholder="john@company.com"
                     />
                   </div>
@@ -196,7 +196,7 @@ export default function Contact() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="company" className="block text-sm font-medium text-neutral-700 mb-2">
                       Company
                     </label>
                     <input
@@ -205,12 +205,12 @@ export default function Contact() {
                       name="company"
                       value={formState.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
                       placeholder="Your company"
                     />
                   </div>
                   <div>
-                    <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="budget" className="block text-sm font-medium text-neutral-700 mb-2">
                       Project Budget
                     </label>
                     <select
@@ -218,7 +218,7 @@ export default function Contact() {
                       name="budget"
                       value={formState.budget}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
                     >
                       <option value="">Select budget range</option>
                       <option value="$5k - $10k">$5k - $10k</option>
@@ -230,7 +230,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="timeline" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="timeline" className="block text-sm font-medium text-neutral-700 mb-2">
                     Project Timeline
                   </label>
                   <select
@@ -238,7 +238,7 @@ export default function Contact() {
                     name="timeline"
                     value={formState.timeline}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
                   >
                     <option value="">Select timeline</option>
                     <option value="ASAP">ASAP</option>
@@ -249,7 +249,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
                     Project Details *
                   </label>
                   <textarea
@@ -259,8 +259,8 @@ export default function Contact() {
                     rows="5"
                     value={formState.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 resize-none"
-                    placeholder="Tell me about your project, goals, and any specific requirements..."
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50 resize-none"
+                    placeholder="Tell us about your project, goals, and any specific requirements..."
                   />
                 </div>
 
@@ -269,7 +269,7 @@ export default function Contact() {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3 shadow-md"
+                  className="w-full bg-gradient-to-r from-orange-500 to-blue-500 text-white py-4 px-6 rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3 shadow-md"
                 >
                   {isSubmitting ? (
                     <>
@@ -293,11 +293,11 @@ export default function Contact() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                   <FaCheck className="w-8 h-8 text-green-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Message Sent Successfully!</h3>
-                <p className="text-gray-600 mb-6">
-                  Thanks for reaching out, {formState.name}! I've received your message and will get back to you within 24 hours.
+                <h3 className="text-2xl font-bold text-neutral-900 mb-4">Message Sent Successfully!</h3>
+                <p className="text-neutral-600 mb-6">
+                  Thanks for reaching out, {formState.name}! We've received your message and will get back to you within 24 hours.
                 </p>
-                <div className="space-y-2 text-sm text-gray-500">
+                <div className="space-y-2 text-sm text-neutral-500">
                   <p>📧 You'll receive a confirmation email shortly</p>
                   <p>⏰ Typical response time: 2-4 hours</p>
                 </div>
@@ -313,7 +313,7 @@ export default function Contact() {
                       message: ''
                     })
                   }}
-                  className="mt-6 text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+                  className="mt-6 text-orange-600 hover:text-orange-700 font-semibold transition-colors duration-200"
                 >
                   Send another message
                 </button>
