@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import Logo from './Logo'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -21,12 +22,13 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-3"
           >
-            <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
+            {/* <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-lg">N</span>
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">
               Nest Craft
-            </span>
+            </span> */}
+            <Logo variant='full' size="xl" />
           </motion.div>
 
           {/* Desktop Menu */}

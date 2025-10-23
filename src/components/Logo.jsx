@@ -73,6 +73,24 @@ export default function Logo({ variant = "default", size = "md", className = "" 
           <span className="text-sm text-gray-600">Solutions</span>
         </div>
       </motion.div>
+    ),
+
+    full_dark: (
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        className="flex items-center space-x-3"
+      >
+        <div className={`${sizes[size]} bg-gradient-to-r from-orange-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg`}>
+          <svg className="w-1/2 h-1/2 text-white" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L4 7V21L12 17L20 21V7L12 2Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+            <path d="M8 12L12 9L16 12" stroke="currentColor" strokeWidth="2" fill="none"/>
+          </svg>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-xl font-bold text-gray-200">Nest Craft</span>
+          <span className="text-sm text-gray-100">Solutions</span>
+        </div>
+      </motion.div>
     )
   }
 

@@ -6,10 +6,10 @@ import { applyBackground } from '../components/Backgrounds'
 export default function Team() {
   // Main founder profile
   const founder = {
-    name: "Alex Johnson",
+    name: "M. Waqar Irshad",
     role: "Founder & Full-Stack Developer",
     bio: "With 8+ years of experience in full-stack development, I specialize in building scalable web applications and SaaS products. Passionate about clean code, modern architecture, and delivering exceptional user experiences.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    image: "/assets/profile/profile.jpeg",
     social: {
       linkedin: "https://linkedin.com/in/alexjohnson",
       github: "https://github.com/alexjohnson",

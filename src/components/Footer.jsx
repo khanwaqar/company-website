@@ -1,6 +1,7 @@
 // components/Footer.jsx
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa'
+import Logo from './Logo'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -32,10 +33,12 @@ export default function Footer() {
               transition={{ duration: 0.5 }}
               className="flex items-center space-x-3 mb-6"
             >
-              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
+              {/* <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-lg">N</span>
               </div>
-              <span className="text-2xl font-bold text-white">Nest Craft</span>
+              <span className="text-2xl font-bold text-white">Nest Craft</span> */}
+
+              <Logo variant="full_dark" size="xl" />
             </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
