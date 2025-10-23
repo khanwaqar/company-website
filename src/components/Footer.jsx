@@ -7,10 +7,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
   
   const socialLinks = [
-    { icon: FaLinkedin, href: "https://linkedin.com/company/nestcraft", label: "LinkedIn" },
-    { icon: FaGithub, href: "https://github.com/nestcraft", label: "GitHub" },
-    { icon: FaTwitter, href: "https://twitter.com/nestcraft", label: "Twitter" },
-    { icon: FaEnvelope, href: "mailto:hello@nestcraft.com", label: "Email" }
+    { icon: FaLinkedin, href: "#", label: "LinkedIn" },
+    { icon: FaGithub, href: "#", label: "GitHub" },
+    { icon: FaTwitter, href: "#", label: "Twitter" },
+    { icon: FaEnvelope, href: "mailto:waqar@nestcraft.com", label: "Email" }
   ]
 
   const quickLinks = [
@@ -122,10 +122,10 @@ export default function Footer() {
             >
               <p>
                 <a href="mailto:hello@nestcraft.com" className="hover:text-orange-400 transition-colors duration-200">
-                  hello@nestcraft.com
+                  waqar@nestcraftsol.com
                 </a>
               </p>
-              <p>+1 (555) 123-4567</p>
+              <p>+92 (307) 581-7379</p>
               <p>Available 24/7 for emergencies</p>
               <motion.a
                 href="#contact"

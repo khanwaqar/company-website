@@ -113,7 +113,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-semibold text-neutral-900">Email</h4>
                   <a href="mailto:hello@nestcraft.com" className="text-neutral-600 hover:text-orange-600 transition-colors">
-                    hello@nestcraft.com
+                    waqar@nestcraftsol.com
                   </a>
                 </div>
               </div>

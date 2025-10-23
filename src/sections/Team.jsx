@@ -11,10 +11,10 @@ export default function Team() {
     bio: "With 8+ years of experience in full-stack development, I specialize in building scalable web applications and SaaS products. Passionate about clean code, modern architecture, and delivering exceptional user experiences.",
     image: "/assets/profile/profile.jpeg",
     social: {
-      linkedin: "https://linkedin.com/in/alexjohnson",
-      github: "https://github.com/alexjohnson",
-      twitter: "https://twitter.com/alexjohnson",
-      email: "alex@devnest.com"
+      linkedin: "https://linkedin.com/in/waqarirshadkhan",
+      github: "https://github.com/khanwaqar",
+      twitter: "https://twitter.com/khanwaqar278",
+      email: "waqar@nestcraftsol.com"
     },
     skills: ["React/Next.js", "Node.js", "TypeScript", "PostgreSQL", "AWS", "Docker"],
     achievements: [
