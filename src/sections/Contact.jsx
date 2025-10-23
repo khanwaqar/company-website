@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaPaperPlane, FaCheck, FaCalendarAlt, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
 import { TechBackgrounds, applyBackground } from '../components/Backgrounds'
+import emailjs from 'emailjs-com' // ✅ Added
 
 export default function Contact() {
   const [formState, setFormState] = useState({
