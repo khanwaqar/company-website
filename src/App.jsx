@@ -9,8 +9,8 @@ import Home from './pages/Home'
 const siteConfig = {
   title: "Nest Craft Solutions - Web & Mobile App Development Agency",
   description: "Nest Craft Solutions builds scalable web applications, mobile apps, and SaaS platforms. Full-stack development with React, Node.js, and cloud technologies.",
-  url: "https://nestcraft.com",
-  image: "https://nestcraft.com/og-image.jpg",
+  url: "https://nestcraftsol.com",
+  image: "https://nestcraft.com/assets/logo/logo1.png",
   author: "Nest Craft Solutions",
   keywords: "web development, mobile app development, SaaS, React, Node.js, full-stack development, software agency, nest craft solutions",
   twitterHandle: "@nestcraft",
@@ -76,12 +76,12 @@ export default function Layout({ children }) {
             "@graph": [
               {
                 "@type": "Organization",
-                "@id": "https://nestcraft.com/#organization",
+                "@id": "https://nestcraftsol.com/#organization",
                 "name": "Nest Craft Solutions",
-                "url": "https://nestcraft.com",
+                "url": "https://nestcraftsol.com",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://nestcraft.com/logo.png"
+                  "url": "https://nestcraftsol.com/assets/logo/logo1.png"
                 },
                 "description": siteConfig.description,
                 "address": {
@@ -93,36 +93,36 @@ export default function Layout({ children }) {
                   "@type": "ContactPoint",
                   "telephone": "+1-555-123-4567",
                   "contactType": "customer service",
-                  "email": "hello@nestcraft.com",
+                  "email": "waqar@nestcraftsol.com",
                   "availableLanguage": "en"
                 },
                 "sameAs": [
-                  "https://linkedin.com/company/nestcraft",
+                  "https://linkedin.com/company/nestcraft-solution",
                   "https://github.com/nestcraft",
                   "https://twitter.com/nestcraft"
                 ]
               },
               {
                 "@type": "WebSite",
-                "@id": "https://nestcraft.com/#website",
-                "url": "https://nestcraft.com",
+                "@id": "https://nestcraftsol.com",
+                "url": "https://nestcraftsol.com",
                 "name": "Nest Craft Solutions",
                 "description": siteConfig.description,
                 "publisher": {
-                  "@id": "https://nestcraft.com/#organization"
+                  "@id": "https://nestcraftsol.com/#organization"
                 }
               },
               {
                 "@type": "WebPage",
-                "@id": "https://nestcraft.com/#webpage",
-                "url": "https://nestcraft.com",
+                "@id": "https://nestcraftsol.com/#webpage",
+                "url": "https://nestcraftsol.com",
                 "name": siteConfig.title,
                 "description": siteConfig.description,
                 "isPartOf": {
-                  "@id": "https://nestcraft.com/#website"
+                  "@id": "https://nestcraftsol.com/#website"
                 },
                 "about": {
-                  "@id": "https://nestcraft.com/#organization"
+                  "@id": "https://nestcraftsol.com/#organization"
                 }
               }
             ]
