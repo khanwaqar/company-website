@@ -1,11 +1,8 @@
 // components/Contact.jsx
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import {
-  FaPaperPlane, FaCheck, FaCalendarAlt, FaEnvelope, FaMapMarkerAlt
-} from 'react-icons/fa'
-import emailjs from 'emailjs-com'
-import { applyBackground } from '../components/Backgrounds'
+import { FaPaperPlane, FaCheck, FaCalendarAlt, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
+import { TechBackgrounds, applyBackground } from '../components/Backgrounds'
 
 export default function Contact() {
   const [formState, setFormState] = useState({
@@ -19,11 +16,6 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSent, setIsSent] = useState(false)
 
-  // 🔧 Your EmailJS credentials
-  const SERVICE_ID = 'service_iuewnbw'        // <-- replace with your service ID
-  const TEMPLATE_ID = 'template_vdke3x9'      // <-- replace with your template ID
-  const PUBLIC_KEY = 'FlOMs0JeqSENbu96V'        // <-- replace with your public key
-
   const handleChange = (e) => {
     setFormState({
       ...formState,
@@ -32,33 +24,33 @@ export default function Contact() {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    try {
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          name: formState.name,
-          email: formState.email,
-          company: formState.company,
-          budget: formState.budget,
-          timeline: formState.timeline,
-          message: formState.message,
-          to_email: 'waqar@nestcraftsol.com',
-        },
-        PUBLIC_KEY
-      )
+  try {
+    // Send email via EmailJS
+    await emailjs.send(
+      "service_iuewnbw", // replace with your EmailJS service ID
+      "template_vdke3x9", // replace with your EmailJS template ID
+      {
+        from_name: formState.name,
+        from_email: formState.email,
+        message: formState.message,
+        to_email: "waqar@nestcraftsol.com"
+      },
+      "FlOMs0JeqSENbu96V" // replace with your EmailJS public key
+    );
 
-      setIsSent(true)
-    } catch (error) {
-      console.error('EmailJS error:', error)
-      alert('❌ Something went wrong while sending your message. Please try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
+    console.log("Form submitted:", formState);
+    setIsSent(true);
+  } catch (error) {
+    console.error("EmailJS Error:", error);
+    alert("Failed to send message. Please try again later.");
+  } finally {
+    setIsSubmitting(false);
   }
+};
+
 
   const consultationTimes = [
     '15-min Quick Call',
@@ -67,19 +59,19 @@ export default function Contact() {
   ]
 
   return (
-    <section
-      id="contact"
+    <section 
+      id="contact" 
       className="py-20 relative overflow-hidden"
       style={applyBackground('contact')}
     >
-      {/* Animated background */}
+      {/* Network Nodes Animation */}
       <div className="absolute inset-0">
         {Array.from({ length: 15 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-blue-400/20 rounded-full"
             style={{
-              left: `${20 + i * 4}%`,
+              left: `${20 + (i * 4)}%`,
               top: `${30 + Math.sin(i) * 40}%`,
             }}
             animate={{
@@ -104,10 +96,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-            Let's Build Something{' '}
-            <span className="bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
-              Amazing
-            </span>
+            Let's Build Something <span className="bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">Amazing</span>
           </h2>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
             Ready to start your project? Book a free consultation or send us your requirements.
@@ -115,7 +104,7 @@ export default function Contact() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Left: Info */}
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -125,11 +114,12 @@ export default function Contact() {
             <div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-6">Get In Touch</h3>
               <p className="text-neutral-600 mb-8">
-                Have an idea? Let's discuss how we can turn it into a successful digital product.
+                Have an idea? Let's discuss how we can turn it into a successful digital product. 
                 We typically respond within 2-4 hours during business days.
               </p>
             </div>
 
+            {/* Contact Methods */}
             <div className="space-y-6">
               <div className="flex items-center space-x-4 bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-neutral-200/50">
                 <div className="bg-orange-100 p-3 rounded-lg">
@@ -137,10 +127,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-neutral-900">Email</h4>
-                  <a
-                    href="mailto:waqar@nestcraftsol.com"
-                    className="text-neutral-600 hover:text-orange-600 transition-colors"
-                  >
+                  <a href="mailto:hello@nestcraft.com" className="text-neutral-600 hover:text-orange-600 transition-colors">
                     waqar@nestcraftsol.com
                   </a>
                 </div>
@@ -166,35 +153,130 @@ export default function Contact() {
                 </div>
               </div>
             </div>
+
+            {/* Consultation Types */}
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-neutral-200/50">
+              <h4 className="font-semibold text-neutral-900 mb-4">Quick Connect Options</h4>
+              <div className="space-y-3">
+                {consultationTimes.map((time, index) => (
+                  <div key={index} className="flex items-center space-x-3 text-neutral-600">
+                    <FaCheck className="w-4 h-4 text-green-500" />
+                    <span>{time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
-          {/* Right: Form */}
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
             {!isSent ? (
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-6 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-neutral-200/50 shadow-sm"
-              >
-                {/* form fields */}
-                {/* same form inputs as before */}
+              <form onSubmit={handleSubmit} className="space-y-6 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-neutral-200/50 shadow-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-neutral-700 mb-2">Your Name *</label>
-                    <input type="text" name="name" required value={formState.name} onChange={handleChange} className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 bg-white/50" />
+                    <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formState.name}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                      placeholder="John Doe"
+                    />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-neutral-700 mb-2">Email *</label>
-                    <input type="email" name="email" required value={formState.email} onChange={handleChange} className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 bg-white/50" />
+                    <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formState.email}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                      placeholder="john@company.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium text-neutral-700 mb-2">
+                      Company
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formState.company}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                      placeholder="Your company"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="budget" className="block text-sm font-medium text-neutral-700 mb-2">
+                      Project Budget
+                    </label>
+                    <select
+                      id="budget"
+                      name="budget"
+                      value={formState.budget}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                    >
+                      <option value="">Select budget range</option>
+                      <option value="$5k - $10k">$5k - $10k</option>
+                      <option value="$10k - $25k">$10k - $25k</option>
+                      <option value="$25k - $50k">$25k - $50k</option>
+                      <option value="$50k+">$50k+</option>
+                    </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-2">Message *</label>
-                  <textarea name="message" required rows="5" value={formState.message} onChange={handleChange} className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 bg-white/50 resize-none" placeholder="Tell us about your project..." />
+                  <label htmlFor="timeline" className="block text-sm font-medium text-neutral-700 mb-2">
+                    Project Timeline
+                  </label>
+                  <select
+                    id="timeline"
+                    name="timeline"
+                    value={formState.timeline}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50"
+                  >
+                    <option value="">Select timeline</option>
+                    <option value="ASAP">ASAP</option>
+                    <option value="1-2 months">1-2 months</option>
+                    <option value="3-6 months">3-6 months</option>
+                    <option value="Flexible">Flexible</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
+                    Project Details *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows="5"
+                    value={formState.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white/50 resize-none"
+                    placeholder="Tell us about your project, goals, and any specific requirements..."
+                  />
                 </div>
 
                 <motion.button
@@ -202,7 +284,7 @@ export default function Contact() {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-orange-500 to-blue-500 text-white py-4 px-6 rounded-lg font-semibold hover:shadow-lg transition disabled:opacity-50 flex items-center justify-center space-x-3"
+                  className="w-full bg-gradient-to-r from-orange-500 to-blue-500 text-white py-4 px-6 rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3 shadow-md"
                 >
                   {isSubmitting ? (
                     <>
@@ -218,15 +300,39 @@ export default function Contact() {
                 </motion.button>
               </form>
             ) : (
-              <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center"
+              >
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                   <FaCheck className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-neutral-900 mb-4">Message Sent Successfully!</h3>
-                <p className="text-neutral-600">
-                  Thanks for reaching out, {formState.name}! We'll get back to you within 24 hours.
+                <p className="text-neutral-600 mb-6">
+                  Thanks for reaching out, {formState.name}! We've received your message and will get back to you within 24 hours.
                 </p>
-              </div>
+                <div className="space-y-2 text-sm text-neutral-500">
+                  <p>📧 You'll receive a confirmation email shortly</p>
+                  <p>⏰ Typical response time: 2-4 hours</p>
+                </div>
+                <button
+                  onClick={() => {
+                    setIsSent(false)
+                    setFormState({
+                      name: '',
+                      email: '',
+                      company: '',
+                      budget: '',
+                      timeline: '',
+                      message: ''
+                    })
+                  }}
+                  className="mt-6 text-orange-600 hover:text-orange-700 font-semibold transition-colors duration-200"
+                >
+                  Send another message
+                </button>
+              </motion.div>
             )}
           </motion.div>
         </div>
