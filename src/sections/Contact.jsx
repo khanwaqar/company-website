@@ -21,7 +21,7 @@ export default function Contact() {
 
   // 🔧 Your EmailJS credentials
   const SERVICE_ID = 'service_iuewnbw'        // <-- replace with your service ID
-  const TEMPLATE_ID = 'template_dwlh0og'      // <-- replace with your template ID
+  const TEMPLATE_ID = 'template_vdke3x9'      // <-- replace with your template ID
   const PUBLIC_KEY = 'FlOMs0JeqSENbu96V'        // <-- replace with your public key
 
   const handleChange = (e) => {
