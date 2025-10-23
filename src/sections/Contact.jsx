@@ -36,6 +36,9 @@ export default function Contact() {
       {
         from_name: formState.name,
         from_email: formState.email,
+        company: formState.company,
+        budget: formState.budget,
+        timeline:formState.timeline,
         message: formState.message,
         to_email: "waqar@nestcraftsol.com"
       },
