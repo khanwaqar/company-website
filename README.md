@@ -1,4 +1,4 @@
-# DevNest — Starter Company Website
+# Nest Craft Solutions — Starter Company Website
 
 This is a starter React (Vite) project with TailwindCSS and Framer Motion.
 It is preconfigured as a single-page company website (Home, Services, About, Contact).
