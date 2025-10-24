@@ -186,6 +186,8 @@ function Layout() {
               <CareerFAQ />
             </PageWrapper>
           } />
+
+          <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
         </Routes>
       </AnimatePresence>
       <Footer />

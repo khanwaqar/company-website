@@ -1,0 +1,27 @@
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "routes": [
+    {
+      "src": "/careers",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/careers/process", 
+      "dest": "/index.html"
+    },
+    {
+      "src": "/careers/team",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/careers/benefits",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/careers/faq",
+      "dest": "/index.html"
+    }
+  ]
+}
