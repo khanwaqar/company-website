@@ -10,6 +10,7 @@ import HiringProcess from './pages/HiringProcess'
 import Team from './pages/Team'
 import Benefits from './pages/Benefits'
 import CareerFAQ from './pages/CareerFAQ'
+import NotFound from './pages/NotFound'
 
 // SEO Configuration
 const siteConfig = {
@@ -186,6 +187,13 @@ function Layout() {
               <CareerFAQ />
             </PageWrapper>
           } />
+
+          <Route path='*' element={
+            <PageWrapper>
+              <NotFound />
+              </PageWrapper>
+          }
+          />
           
         </Routes>
       </AnimatePresence>
