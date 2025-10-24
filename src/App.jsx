@@ -1,16 +1,22 @@
 // App.jsx
 import { motion, AnimatePresence } from 'framer-motion'
-import { Helmet } from 'react-helmet-async' // You'll need to install this
+import { Helmet } from 'react-helmet-async'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
+import Careers from './pages/Careers'
+import HiringProcess from './pages/HiringProcess'
+import Team from './pages/Team'
+import Benefits from './pages/Benefits'
+import CareerFAQ from './pages/CareerFAQ'
 
 // SEO Configuration
 const siteConfig = {
   title: "Nest Craft Solutions - Web & Mobile App Development Agency",
   description: "Nest Craft Solutions builds scalable web applications, mobile apps, and SaaS platforms. Full-stack development with React, Node.js, and cloud technologies.",
   url: "https://nestcraftsol.com",
-  image: "https://nestcraft.com/assets/logo/logo1.png",
+  image: "https://nestcraftsol.com/assets/logo/logo1.png",
   author: "Nest Craft Solutions",
   keywords: "web development, mobile app development, SaaS, React, Node.js, full-stack development, software agency, nest craft solutions",
   twitterHandle: "@nestcraft",
@@ -18,7 +24,24 @@ const siteConfig = {
   type: "website"
 }
 
-export default function Layout({ children }) {
+// Page transition wrapper
+function PageWrapper({ children }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+// Main layout component
+function Layout() {
+  const location = useLocation()
+
   return (
     <div className="min-h-screen bg-white">
       {/* SEO Meta Tags */}
@@ -91,7 +114,7 @@ export default function Layout({ children }) {
                 },
                 "contactPoint": {
                   "@type": "ContactPoint",
-                  "telephone": "+1-555-123-4567",
+                  "telephone": "+92-307-581-7379",
                   "contactType": "customer service",
                   "email": "waqar@nestcraftsol.com",
                   "availableLanguage": "en"
@@ -132,16 +155,49 @@ export default function Layout({ children }) {
 
       <Navbar />
       <AnimatePresence mode="wait">
-        <motion.main
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Home />
-        </motion.main>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={
+            <PageWrapper>
+              <Home />
+            </PageWrapper>
+          } />
+          <Route path="/careers" element={
+            <PageWrapper>
+              <Careers />
+            </PageWrapper>
+          } />
+          <Route path="/careers/process" element={
+            <PageWrapper>
+              <HiringProcess />
+            </PageWrapper>
+          } />
+          <Route path="/careers/team" element={
+            <PageWrapper>
+              <Team />
+            </PageWrapper>
+          } />
+          <Route path="/careers/benefits" element={
+            <PageWrapper>
+              <Benefits />
+            </PageWrapper>
+          } />
+          <Route path="/careers/faq" element={
+            <PageWrapper>
+              <CareerFAQ />
+            </PageWrapper>
+          } />
+        </Routes>
       </AnimatePresence>
       <Footer />
     </div>
+  )
+}
+
+// Main App component with Router
+export default function App() {
+  return (
+    <Router>
+      <Layout />
+    </Router>
   )
 }
