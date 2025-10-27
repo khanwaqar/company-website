@@ -14,11 +14,11 @@ export default function Footer() {
   ]
 
   const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" }
+    { name: "Home", href: "/home" },
+    { name: "Services", href: "/services" },
+    { name: "Portfolio", href: "/work" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" }
   ]
 
   return (
@@ -121,14 +121,14 @@ export default function Footer() {
               className="space-y-3 text-neutral-400"
             >
               <p>
-                <a href="mailto:hello@nestcraft.com" className="hover:text-orange-400 transition-colors duration-200">
+                <a href="mailto:waqar@nestcraft.com" className="hover:text-orange-400 transition-colors duration-200">
                   waqar@nestcraftsol.com
                 </a>
               </p>
               <p>+92 (307) 581-7379</p>
               <p>Available 24/7 for emergencies</p>
               <motion.a
-                href="#contact"
+                href="/contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-block bg-gradient-to-r from-orange-500 to-blue-500 hover:from-orange-600 hover:to-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 mt-4 shadow-md"

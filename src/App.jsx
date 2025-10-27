@@ -5,14 +5,13 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import Careers from './pages/Careers'
-import HiringProcess from './pages/HiringProcess'
-import Team from './pages/Team'
-import Benefits from './pages/Benefits'
-import CareerFAQ from './pages/CareerFAQ'
+import Services from './pages/Services'
+import Work from './pages/Work'
+import Contact from './pages/ContactUs'
+import AboutPage from './pages/AboutPage'
 import NotFound from './pages/NotFound'
 
-// SEO Configuration
+// 🔥 CLEANED: No trailing spaces anywhere
 const siteConfig = {
   title: "Nest Craft Solutions - Web & Mobile App Development Agency",
   description: "Nest Craft Solutions builds scalable web applications, mobile apps, and SaaS platforms. Full-stack development with React, Node.js, and cloud technologies.",
@@ -45,42 +44,25 @@ function Layout() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* SEO Meta Tags */}
+      {/* Global SEO Meta Tags (fallback) */}
       <Helmet>
-        {/* Character Set & Viewport */}
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
-        {/* Basic Meta Tags */}
-        <title>{siteConfig.title}</title>
-        <meta name="description" content={siteConfig.description} />
-        <meta name="keywords" content={siteConfig.keywords} />
         <meta name="author" content={siteConfig.author} />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
-        <meta name="revisit-after" content="7 days" />
         <meta name="language" content="en" />
         <meta name="rating" content="general" />
         
         {/* Open Graph */}
-        <meta property="og:title" content={siteConfig.title} />
-        <meta property="og:description" content={siteConfig.description} />
-        <meta property="og:image" content={siteConfig.image} />
-        <meta property="og:url" content={siteConfig.url} />
         <meta property="og:type" content={siteConfig.type} />
         <meta property="og:site_name" content="Nest Craft Solutions" />
         <meta property="og:locale" content={siteConfig.locale} />
         
-        {/* Twitter Card */}
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content={siteConfig.twitterHandle} />
         <meta name="twitter:creator" content={siteConfig.twitterHandle} />
-        <meta name="twitter:title" content={siteConfig.title} />
-        <meta name="twitter:description" content={siteConfig.description} />
-        <meta name="twitter:image" content={siteConfig.image} />
-        
-        {/* Canonical URL */}
-        <link rel="canonical" href={siteConfig.url} />
         
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
@@ -88,12 +70,11 @@ function Layout() {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         
-        {/* Preconnect for performance */}
+        {/* Preconnect */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
         
-        {/* Structured Data */}
+        {/* Structured Data (Organization) */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -121,33 +102,18 @@ function Layout() {
                   "availableLanguage": "en"
                 },
                 "sameAs": [
-                  "https://linkedin.com/company/nestcraft-solution",
-                  "https://github.com/nestcraft",
-                  "https://twitter.com/nestcraft"
+                  "https://linkedin.com/in/waqarirshadkhan",
+                  "https://github.com/khanwaqar",
+                  "https://twitter.com/khanwaqar278"
                 ]
               },
               {
                 "@type": "WebSite",
-                "@id": "https://nestcraftsol.com",
+                "@id": "https://nestcraftsol.com/#website",
                 "url": "https://nestcraftsol.com",
                 "name": "Nest Craft Solutions",
                 "description": siteConfig.description,
-                "publisher": {
-                  "@id": "https://nestcraftsol.com/#organization"
-                }
-              },
-              {
-                "@type": "WebPage",
-                "@id": "https://nestcraftsol.com/#webpage",
-                "url": "https://nestcraftsol.com",
-                "name": siteConfig.title,
-                "description": siteConfig.description,
-                "isPartOf": {
-                  "@id": "https://nestcraftsol.com/#website"
-                },
-                "about": {
-                  "@id": "https://nestcraftsol.com/#organization"
-                }
+                "publisher": { "@id": "https://nestcraftsol.com/#organization" }
               }
             ]
           })}
@@ -158,43 +124,23 @@ function Layout() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={
-            <PageWrapper>
-              <Home />
-            </PageWrapper>
+            <PageWrapper><Home /></PageWrapper>
           } />
-          <Route path="/careers" element={
-            <PageWrapper>
-              <Careers />
-            </PageWrapper>
+          <Route path="/about" element={
+            <PageWrapper><AboutPage /></PageWrapper>
           } />
-          <Route path="/careers/process" element={
-            <PageWrapper>
-              <HiringProcess />
-            </PageWrapper>
+          <Route path="/services" element={
+            <PageWrapper><Services /></PageWrapper>
           } />
-          <Route path="/careers/team" element={
-            <PageWrapper>
-              <Team />
-            </PageWrapper>
+          <Route path="/work" element={
+            <PageWrapper><Work /></PageWrapper>
           } />
-          <Route path="/careers/benefits" element={
-            <PageWrapper>
-              <Benefits />
-            </PageWrapper>
+          <Route path="/contact" element={
+            <PageWrapper><Contact /></PageWrapper>
           } />
-          <Route path="/careers/faq" element={
-            <PageWrapper>
-              <CareerFAQ />
-            </PageWrapper>
+          <Route path="*" element={
+            <PageWrapper><NotFound /></PageWrapper>
           } />
-
-          <Route path='*' element={
-            <PageWrapper>
-              <NotFound />
-              </PageWrapper>
-          }
-          />
-          
         </Routes>
       </AnimatePresence>
       <Footer />
@@ -202,7 +148,6 @@ function Layout() {
   )
 }
 
-// Main App component with Router
 export default function App() {
   return (
     <Router>
