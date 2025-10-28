@@ -81,10 +81,25 @@ export default function ServicesPage() {
   return (
     <div className="pt-20 pb-16 bg-gradient-to-b from-gray-50 to-white">
       <Helmet>
-        <title>Services – Custom Web & SaaS Development | Nest Craft</title>
-        <meta name="description" content="Web apps, SaaS MVPs, and mobile apps built with React, Node.js, and AI. Fixed pricing. Weekly updates. Full ownership." />
-        <link rel="canonical" href="https://nestcraftsol.com/services" />
+        <title>Services – Custom Web & SaaS Development | NestCraft Solutions</title>
+        <meta
+          name="description"
+          content="NestCraft Solutions builds Web Apps, SaaS MVPs, and AI-powered platforms using React, Node.js, and modern tech. Fixed pricing. Weekly updates. Full ownership."
+        />
+        <link rel="canonical" href="https://www.nestcraftsol.com/services" />
+        
+        {/* Optional but very helpful for LinkedIn preview */}
+        <meta property="og:title" content="Custom Web & SaaS Development | NestCraft Solutions" />
+        <meta
+          property="og:description"
+          content="Smart, scalable, and modern digital solutions built with React, Node.js, and AI. Build. Scale. Succeed."
+        />
+        <meta property="og:url" content="https://www.nestcraftsol.com/services" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.nestcraftsol.com/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
+
 
       {/* Enhanced Hero Section */}
       <section className="container mx-auto px-6 py-16 text-center">
