@@ -46,6 +46,12 @@ export default function ContactPage() {
         "FlOMs0JeqSENbu96V"
       )
       setIsSent(true)
+      if (window.gtag) {
+        window.gtag('event', 'form_submit', {
+          event_category: 'lead',
+          event_label: 'contact_form',
+        });
+      }
     } catch (error) {
       console.error("EmailJS Error:", error)
       alert("Failed to send. Please try again or email me directly.")
