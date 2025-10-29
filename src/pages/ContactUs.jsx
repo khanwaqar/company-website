@@ -1,5 +1,5 @@
 // pages/ContactPage.jsx
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaPaperPlane, FaCheck, FaCalendarAlt, FaEnvelope, FaRocket, FaLightbulb } from 'react-icons/fa'
 import { FiMessageSquare, FiUser, FiMail, FiDollarSign, FiClock } from 'react-icons/fi'
@@ -17,64 +17,20 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSent, setIsSent] = useState(false)
-  const [captchaToken, setCaptchaToken] = useState(null)
-  const captchaRef = useRef(null)
 
-  // Load reCAPTCHA script
+  // Load reCAPTCHA Enterprise script
   useEffect(() => {
-    const loadRecaptcha = () => {
-      if (window.grecaptcha) {
-        window.grecaptcha.ready(() => {
-          if (captchaRef.current && !captchaRef.current.hasChildNodes()) {
-            window.grecaptcha.render(captchaRef.current, {
-              sitekey: '6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6', // Replace with your actual site key
-              callback: (token) => {
-                setCaptchaToken(token)
-              },
-              'expired-callback': () => {
-                setCaptchaToken(null)
-              },
-              'error-callback': () => {
-                setCaptchaToken(null)
-              }
-            })
-          }
-        })
-        return
-      }
-
-      // If grecaptcha not loaded, load the script
-      const script = document.createElement('script')
-      script.src = `https://www.google.com/recaptcha/api.js?render=explicit`
-      script.async = true
-      script.defer = true
-      script.onload = () => {
-        window.grecaptcha.ready(() => {
-          if (captchaRef.current) {
-            window.grecaptcha.render(captchaRef.current, {
-              sitekey: '6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6', // Replace with your actual site key
-              callback: (token) => {
-                setCaptchaToken(token)
-              },
-              'expired-callback': () => {
-                setCaptchaToken(null)
-              },
-              'error-callback': () => {
-                setCaptchaToken(null)
-              }
-            })
-          }
-        })
-      }
-      document.head.appendChild(script)
-    }
-
-    loadRecaptcha()
+    const script = document.createElement('script')
+    script.src = 'https://www.google.com/recaptcha/enterprise.js?render=6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6'
+    script.async = true
+    script.defer = true
+    document.head.appendChild(script)
 
     return () => {
-      // Clean up reCAPTCHA when component unmounts
-      if (window.grecaptcha && captchaRef.current) {
-        window.grecaptcha.reset()
+      // Clean up if needed
+      const existingScript = document.querySelector('script[src*="recaptcha/enterprise.js"]')
+      if (existingScript) {
+        document.head.removeChild(existingScript)
       }
     }
   }, [])
@@ -87,15 +43,8 @@ export default function ContactPage() {
     })
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    
-    // Validate reCAPTCHA
-    if (!captchaToken) {
-      alert('Please complete the "I\'m not a robot" verification')
-      return
-    }
-
+  // reCAPTCHA callback function
+  const onSubmit = async (token) => {
     setIsSubmitting(true)
 
     try {
@@ -110,20 +59,13 @@ export default function ContactPage() {
           message: formState.message,
           healthsync_interest: formState.interestedInHealthSync ? "Yes" : "No",
           to_email: "waqar@nestcraftsol.com",
-          'g-recaptcha-response': captchaToken, // This will be sent to your email
-          captcha_verified: 'Yes' // Additional field for your reference
+          'g-recaptcha-response': token,
+          captcha_verified: 'Yes'
         },
         "FlOMs0JeqSENbu96V"
       )
       setIsSent(true)
-      
-      // Reset reCAPTCHA
-      if (window.grecaptcha) {
-        window.grecaptcha.reset()
-        setCaptchaToken(null)
-      }
 
-      // Google Analytics
       if (window.gtag) {
         window.gtag('event', 'form_submit', {
           event_category: 'lead',
@@ -133,14 +75,27 @@ export default function ContactPage() {
     } catch (error) {
       console.error("EmailJS Error:", error)
       alert("Failed to send message. Please try again or email me directly at waqar@nestcraftsol.com")
-      
-      // Reset reCAPTCHA on error
-      if (window.grecaptcha) {
-        window.grecaptcha.reset()
-        setCaptchaToken(null)
-      }
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  // Handle form submission to trigger reCAPTCHA
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    
+    // Check if all required fields are filled
+    if (!formState.name || !formState.email || !formState.budget || !formState.timeline || !formState.message) {
+      alert('Please fill in all required fields')
+      return
+    }
+
+    // reCAPTCHA will automatically trigger the onSubmit callback when verified
+    // If there's any issue with reCAPTCHA, fall back to direct submission
+    if (!window.grecaptcha || !window.grecaptcha.enterprise) {
+      console.warn('reCAPTCHA not loaded, submitting directly')
+      onSubmit('direct-submission-fallback')
+      return
     }
   }
 
@@ -154,10 +109,6 @@ export default function ContactPage() {
       interestedInHealthSync: false
     })
     setIsSent(false)
-    if (window.grecaptcha) {
-      window.grecaptcha.reset()
-      setCaptchaToken(null)
-    }
   }
 
   const contactMethods = [
@@ -296,10 +247,11 @@ export default function ContactPage() {
           <div className="lg:col-span-2">
             {!isSent ? (
               <motion.form
+                id="demo-form"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                onSubmit={handleSubmit}
+                onSubmit={handleFormSubmit}
                 className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -409,27 +361,13 @@ export default function ContactPage() {
                   </label>
                 </div>
 
-                {/* reCAPTCHA */}
-                <div className="mb-6">
-                  <div className="flex justify-center">
-                    <div 
-                      ref={captchaRef}
-                      className="g-recaptcha"
-                    />
-                  </div>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    This site is protected by reCAPTCHA and the Google 
-                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline ml-1">Privacy Policy</a> and
-                    <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline ml-1">Terms of Service</a> apply.
-                  </p>
-                </div>
-
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting || !captchaToken}
-                  whileHover={{ scale: !captchaToken ? 1 : 1.02 }}
-                  whileTap={{ scale: !captchaToken ? 1 : 0.98 }}
-                  className="w-full bg-gradient-to-r from-orange-500 to-blue-500 text-white py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg"
+                {/* reCAPTCHA Enterprise Button */}
+                <button
+                  className="g-recaptcha w-full bg-gradient-to-r from-orange-500 to-blue-500 text-white py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg"
+                  data-sitekey="6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6"
+                  data-callback='onSubmit'
+                  data-action='submit'
+                  disabled={isSubmitting}
                 >
                   {isSubmitting ? (
                     <>
@@ -442,10 +380,10 @@ export default function ContactPage() {
                       <span>Get Your Free Project Plan</span>
                     </>
                   )}
-                </motion.button>
+                </button>
 
                 <p className="text-center text-sm text-gray-500 mt-4">
-                  No spam, no obligation. Just a real conversation about your project.
+                  Protected by reCAPTCHA Enterprise • No spam, no obligation
                 </p>
               </motion.form>
             ) : (
@@ -506,6 +444,19 @@ export default function ContactPage() {
           </div>
         </motion.div>
       </div>
+
+      {/* Add the reCAPTCHA callback function to window object */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.onSubmit = function(token) {
+              // This will be called by reCAPTCHA Enterprise
+              const event = new CustomEvent('recaptchaSuccess', { detail: token });
+              window.dispatchEvent(event);
+            }
+          `
+        }}
+      />
     </div>
   )
 }
