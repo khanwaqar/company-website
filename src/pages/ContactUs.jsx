@@ -27,7 +27,7 @@ export default function ContactPage() {
         window.grecaptcha.ready(() => {
           if (captchaRef.current && !captchaRef.current.hasChildNodes()) {
             window.grecaptcha.render(captchaRef.current, {
-              sitekey: '6Lf_OforAAAAAKfctt-raK873wx1Wcc4ba0nEHwa', // Replace with your actual site key
+              sitekey: '6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6', // Replace with your actual site key
               callback: (token) => {
                 setCaptchaToken(token)
               },
@@ -52,7 +52,7 @@ export default function ContactPage() {
         window.grecaptcha.ready(() => {
           if (captchaRef.current) {
             window.grecaptcha.render(captchaRef.current, {
-              sitekey: '6Lf_OforAAAAAKfctt-raK873wx1Wcc4ba0nEHwa', // Replace with your actual site key
+              sitekey: '6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6', // Replace with your actual site key
               callback: (token) => {
                 setCaptchaToken(token)
               },
