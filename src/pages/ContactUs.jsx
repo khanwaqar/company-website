@@ -1,7 +1,7 @@
 // pages/ContactPage.jsx
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FaPaperPlane, FaCheck, FaCalendarAlt, FaEnvelope, FaMapMarkerAlt, FaPhone, FaRocket, FaLightbulb } from 'react-icons/fa'
+import { FaPaperPlane, FaCheck, FaCalendarAlt, FaEnvelope, FaRocket, FaLightbulb } from 'react-icons/fa'
 import { FiMessageSquare, FiUser, FiMail, FiDollarSign, FiClock } from 'react-icons/fi'
 import emailjs from 'emailjs-com'
 import { Helmet } from 'react-helmet-async'
@@ -17,6 +17,67 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSent, setIsSent] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState(null)
+  const captchaRef = useRef(null)
+
+  // Load reCAPTCHA script
+  useEffect(() => {
+    const loadRecaptcha = () => {
+      if (window.grecaptcha) {
+        window.grecaptcha.ready(() => {
+          if (captchaRef.current && !captchaRef.current.hasChildNodes()) {
+            window.grecaptcha.render(captchaRef.current, {
+              sitekey: '6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6', // Replace with your actual site key
+              callback: (token) => {
+                setCaptchaToken(token)
+              },
+              'expired-callback': () => {
+                setCaptchaToken(null)
+              },
+              'error-callback': () => {
+                setCaptchaToken(null)
+              }
+            })
+          }
+        })
+        return
+      }
+
+      // If grecaptcha not loaded, load the script
+      const script = document.createElement('script')
+      script.src = `https://www.google.com/recaptcha/api.js?render=explicit`
+      script.async = true
+      script.defer = true
+      script.onload = () => {
+        window.grecaptcha.ready(() => {
+          if (captchaRef.current) {
+            window.grecaptcha.render(captchaRef.current, {
+              sitekey: '6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6', // Replace with your actual site key
+              callback: (token) => {
+                setCaptchaToken(token)
+              },
+              'expired-callback': () => {
+                setCaptchaToken(null)
+              },
+              'error-callback': () => {
+                setCaptchaToken(null)
+              }
+            })
+          }
+        })
+      }
+      document.head.appendChild(script)
+    }
+
+    loadRecaptcha()
+
+    return () => {
+      // Clean up reCAPTCHA when component unmounts
+      if (window.grecaptcha && captchaRef.current) {
+        window.grecaptcha.reset()
+      }
+    }
+  }, [])
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -28,6 +89,13 @@ export default function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    // Validate reCAPTCHA
+    if (!captchaToken) {
+      alert('Please complete the "I\'m not a robot" verification')
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
@@ -41,22 +109,54 @@ export default function ContactPage() {
           timeline: formState.timeline,
           message: formState.message,
           healthsync_interest: formState.interestedInHealthSync ? "Yes" : "No",
-          to_email: "waqar@nestcraftsol.com"
+          to_email: "waqar@nestcraftsol.com",
+          'g-recaptcha-response': captchaToken, // This will be sent to your email
+          captcha_verified: 'Yes' // Additional field for your reference
         },
         "FlOMs0JeqSENbu96V"
       )
       setIsSent(true)
+      
+      // Reset reCAPTCHA
+      if (window.grecaptcha) {
+        window.grecaptcha.reset()
+        setCaptchaToken(null)
+      }
+
+      // Google Analytics
       if (window.gtag) {
         window.gtag('event', 'form_submit', {
           event_category: 'lead',
           event_label: 'contact_form',
-        });
+        })
       }
     } catch (error) {
       console.error("EmailJS Error:", error)
-      alert("Failed to send. Please try again or email me directly.")
+      alert("Failed to send message. Please try again or email me directly at waqar@nestcraftsol.com")
+      
+      // Reset reCAPTCHA on error
+      if (window.grecaptcha) {
+        window.grecaptcha.reset()
+        setCaptchaToken(null)
+      }
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const resetForm = () => {
+    setFormState({
+      name: '',
+      email: '',
+      budget: '',
+      timeline: '',
+      message: '',
+      interestedInHealthSync: false
+    })
+    setIsSent(false)
+    if (window.grecaptcha) {
+      window.grecaptcha.reset()
+      setCaptchaToken(null)
     }
   }
 
@@ -294,7 +394,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* HealthSync Interest */}
-                <div className="flex items-start mb-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <div className="flex items-start mb-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
                   <input
                     type="checkbox"
                     name="interestedInHealthSync"
@@ -309,11 +409,26 @@ export default function ContactPage() {
                   </label>
                 </div>
 
+                {/* reCAPTCHA */}
+                <div className="mb-6">
+                  <div className="flex justify-center">
+                    <div 
+                      ref={captchaRef}
+                      className="g-recaptcha"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    This site is protected by reCAPTCHA and the Google 
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline ml-1">Privacy Policy</a> and
+                    <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline ml-1">Terms of Service</a> apply.
+                  </p>
+                </div>
+
                 <motion.button
                   type="submit"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting || !captchaToken}
+                  whileHover={{ scale: !captchaToken ? 1 : 1.02 }}
+                  whileTap={{ scale: !captchaToken ? 1 : 0.98 }}
                   className="w-full bg-gradient-to-r from-orange-500 to-blue-500 text-white py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg"
                 >
                   {isSubmitting ? (
@@ -354,7 +469,7 @@ export default function ContactPage() {
                   </p>
                 </div>
                 <motion.button
-                  onClick={() => setIsSent(false)}
+                  onClick={resetForm}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="bg-gradient-to-r from-orange-500 to-blue-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
