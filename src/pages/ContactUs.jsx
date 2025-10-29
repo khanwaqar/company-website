@@ -1,7 +1,7 @@
 // pages/ContactPage.jsx
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaPaperPlane, FaCheck, FaCalendarAlt, FaEnvelope, FaRocket, FaLightbulb } from 'react-icons/fa'
+import { FaPaperPlane, FaCheck, FaCalendarAlt, FaEnvelope, FaMapMarkerAlt, FaPhone, FaRocket, FaLightbulb } from 'react-icons/fa'
 import { FiMessageSquare, FiUser, FiMail, FiDollarSign, FiClock } from 'react-icons/fi'
 import emailjs from 'emailjs-com'
 import { Helmet } from 'react-helmet-async'
@@ -18,23 +18,6 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSent, setIsSent] = useState(false)
 
-  // Load reCAPTCHA Enterprise script
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://www.google.com/recaptcha/enterprise.js?render=6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6'
-    script.async = true
-    script.defer = true
-    document.head.appendChild(script)
-
-    return () => {
-      // Clean up if needed
-      const existingScript = document.querySelector('script[src*="recaptcha/enterprise.js"]')
-      if (existingScript) {
-        document.head.removeChild(existingScript)
-      }
-    }
-  }, [])
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
     setFormState({
@@ -43,8 +26,8 @@ export default function ContactPage() {
     })
   }
 
-  // reCAPTCHA callback function
-  const onSubmit = async (token) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     setIsSubmitting(true)
 
     try {
@@ -58,57 +41,23 @@ export default function ContactPage() {
           timeline: formState.timeline,
           message: formState.message,
           healthsync_interest: formState.interestedInHealthSync ? "Yes" : "No",
-          to_email: "waqar@nestcraftsol.com",
-          'g-recaptcha-response': token,
-          captcha_verified: 'Yes'
+          to_email: "waqar@nestcraftsol.com"
         },
         "FlOMs0JeqSENbu96V"
       )
       setIsSent(true)
-
       if (window.gtag) {
         window.gtag('event', 'form_submit', {
           event_category: 'lead',
           event_label: 'contact_form',
-        })
+        });
       }
     } catch (error) {
       console.error("EmailJS Error:", error)
-      alert("Failed to send message. Please try again or email me directly at waqar@nestcraftsol.com")
+      alert("Failed to send. Please try again or email me directly.")
     } finally {
       setIsSubmitting(false)
     }
-  }
-
-  // Handle form submission to trigger reCAPTCHA
-  const handleFormSubmit = (e) => {
-    e.preventDefault()
-    
-    // Check if all required fields are filled
-    if (!formState.name || !formState.email || !formState.budget || !formState.timeline || !formState.message) {
-      alert('Please fill in all required fields')
-      return
-    }
-
-    // reCAPTCHA will automatically trigger the onSubmit callback when verified
-    // If there's any issue with reCAPTCHA, fall back to direct submission
-    if (!window.grecaptcha || !window.grecaptcha.enterprise) {
-      console.warn('reCAPTCHA not loaded, submitting directly')
-      onSubmit('direct-submission-fallback')
-      return
-    }
-  }
-
-  const resetForm = () => {
-    setFormState({
-      name: '',
-      email: '',
-      budget: '',
-      timeline: '',
-      message: '',
-      interestedInHealthSync: false
-    })
-    setIsSent(false)
   }
 
   const contactMethods = [
@@ -247,11 +196,10 @@ export default function ContactPage() {
           <div className="lg:col-span-2">
             {!isSent ? (
               <motion.form
-                id="demo-form"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                onSubmit={handleFormSubmit}
+                onSubmit={handleSubmit}
                 className="bg-white rounded-3xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -346,7 +294,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* HealthSync Interest */}
-                <div className="flex items-start mb-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <div className="flex items-start mb-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
                   <input
                     type="checkbox"
                     name="interestedInHealthSync"
@@ -361,13 +309,12 @@ export default function ContactPage() {
                   </label>
                 </div>
 
-                {/* reCAPTCHA Enterprise Button */}
-                <button
-                  className="g-recaptcha w-full bg-gradient-to-r from-orange-500 to-blue-500 text-white py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg"
-                  data-sitekey="6LeR9forAAAAAEIp0iF4xS6RKeaaSv2_ueSoRWO6"
-                  data-callback='onSubmit'
-                  data-action='submit'
+                <motion.button
+                  type="submit"
                   disabled={isSubmitting}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-gradient-to-r from-orange-500 to-blue-500 text-white py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg"
                 >
                   {isSubmitting ? (
                     <>
@@ -380,10 +327,10 @@ export default function ContactPage() {
                       <span>Get Your Free Project Plan</span>
                     </>
                   )}
-                </button>
+                </motion.button>
 
                 <p className="text-center text-sm text-gray-500 mt-4">
-                  Protected by reCAPTCHA Enterprise • No spam, no obligation
+                  No spam, no obligation. Just a real conversation about your project.
                 </p>
               </motion.form>
             ) : (
@@ -407,7 +354,7 @@ export default function ContactPage() {
                   </p>
                 </div>
                 <motion.button
-                  onClick={resetForm}
+                  onClick={() => setIsSent(false)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="bg-gradient-to-r from-orange-500 to-blue-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
@@ -444,19 +391,6 @@ export default function ContactPage() {
           </div>
         </motion.div>
       </div>
-
-      {/* Add the reCAPTCHA callback function to window object */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.onSubmit = function(token) {
-              // This will be called by reCAPTCHA Enterprise
-              const event = new CustomEvent('recaptchaSuccess', { detail: token });
-              window.dispatchEvent(event);
-            }
-          `
-        }}
-      />
     </div>
   )
 }
