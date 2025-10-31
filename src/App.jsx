@@ -10,6 +10,7 @@ import Work from './pages/Work'
 import Contact from './pages/ContactUs'
 import AboutPage from './pages/AboutPage'
 import NotFound from './pages/NotFound'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 // 🔥 CLEANED: No trailing spaces anywhere
 const siteConfig = {
@@ -137,6 +138,9 @@ function Layout() {
           } />
           <Route path="/contact" element={
             <PageWrapper><Contact /></PageWrapper>
+          } />
+          <Route path="/privacy-policy" element={
+            <PageWrapper><PrivacyPolicy /></PageWrapper>
           } />
           <Route path="*" element={
             <PageWrapper><NotFound /></PageWrapper>
