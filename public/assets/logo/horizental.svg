@@ -1,0 +1,32 @@
+<svg width="600" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nestcraftGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e56d33" />
+      <stop offset="12.5%" stop-color="#ee8629" />
+      <stop offset="25%" stop-color="#603ca9" />
+      <stop offset="37.5%" stop-color="#2092cb" />
+      <stop offset="50%" stop-color="#db4952" />
+      <stop offset="62.5%" stop-color="#972d8f" />
+      <stop offset="75%" stop-color="#e2553a" />
+      <stop offset="87.5%" stop-color="#306cbc" />
+      <stop offset="100%" stop-color="#c4326f" />
+    </linearGradient>
+  </defs>
+
+  <!-- No background rectangle = transparent background -->
+
+  <text x="50%" y="90" text-anchor="middle"
+        font-family="Arial, sans-serif"
+        font-size="48"
+        font-weight="bold"
+        fill="url(#nestcraftGradient)">
+    NESTCRAFT
+  </text>
+
+  <text x="50%" y="140" text-anchor="middle"
+        font-family="Arial, sans-serif"
+        font-size="24"
+        fill="url(#nestcraftGradient)">
+    SOLUTIONS
+  </text>
+</svg>

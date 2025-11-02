@@ -201,7 +201,7 @@ To exercise these rights, contact us at privacy@nestcraftsol.com`
             We're here to help you understand our privacy practices.
           </p>
           <div className="space-y-2 text-sm">
-            <p>📧 Email: privacy@nestcraftsol.com</p>
+            <p>📧 Email: info@nestcraftsol.com</p>
             <p>🌐 Website: nestcraftsol.com</p>
             <p>📍 Based: Remote (Serving clients worldwide)</p>
           </div>

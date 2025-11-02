@@ -1,16 +1,16 @@
 // components/Footer.jsx
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaRegBuilding } from 'react-icons/fa'
 import Logo from './Logo'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
   
   const socialLinks = [
-    { icon: FaLinkedin, href: "#", label: "LinkedIn" },
-    { icon: FaGithub, href: "#", label: "GitHub" },
-    { icon: FaTwitter, href: "#", label: "Twitter" },
-    { icon: FaEnvelope, href: "mailto:waqar@nestcraft.com", label: "Email" }
+    { icon: FaLinkedin, href: "https://www.linkedin.com/company", label: "LinkedIn" },
+    { icon: FaGithub, href: "https://github.com/nestcraftsol", label: "GitHub" },
+    { icon: FaTwitter, href: "https://x.com/NestCraftSol", label: "Twitter" },
+    { icon: FaEnvelope, href: "mailto:info@nestcraft.com", label: "Email" }
   ]
 
   const quickLinks = [
@@ -18,7 +18,8 @@ export default function Footer() {
     { name: "Services", href: "/services" },
     { name: "Portfolio", href: "/work" },
     { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" }
+    { name: "Contact", href: "/contact" },
+    { name: "Privacy", href: "/privacy-policy" }
   ]
 
   return (
@@ -33,11 +34,6 @@ export default function Footer() {
               transition={{ duration: 0.5 }}
               className="flex items-center space-x-3 mb-6"
             >
-              {/* <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-lg">N</span>
-              </div>
-              <span className="text-2xl font-bold text-white">Nest Craft</span> */}
-
               <Logo variant="full_dark" size="xl" />
             </motion.div>
             <motion.p
@@ -48,6 +44,24 @@ export default function Footer() {
             >
               We build digital products that help businesses grow and succeed in the modern world through innovative technology solutions.
             </motion.p>
+            
+            {/* Company Registration Details */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="mb-6 p-4 bg-neutral-800 rounded-lg border-l-4 border-orange-500"
+            >
+              <div className="flex items-center space-x-2 mb-2">
+                <FaRegBuilding className="w-4 h-4 text-orange-400" />
+                <span className="text-sm font-semibold text-white">Registered Company</span>
+              </div>
+              <div className="text-xs text-neutral-300 space-y-1">
+                <p>SECP Registration: <span className="text-white">0313853</span></p>
+                <p>NTN: <span className="text-white">H979568</span></p>
+              </div>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -121,8 +135,8 @@ export default function Footer() {
               className="space-y-3 text-neutral-400"
             >
               <p>
-                <a href="mailto:waqar@nestcraft.com" className="hover:text-orange-400 transition-colors duration-200">
-                  waqar@nestcraftsol.com
+                <a href="mailto:info@nestcraft.com" className="hover:text-orange-400 transition-colors duration-200">
+                  info@nestcraftsol.com
                 </a>
               </p>
               <p>+92 (307) 581-7379</p>
@@ -147,15 +161,19 @@ export default function Footer() {
           className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
         >
           <div className="text-neutral-400 text-sm">
-            © {currentYear} Nest Craft Solutions. All rights reserved.
+            © {currentYear} NESTCRAFT SOLUTIONS (SMC-PRIVATE) LIMITED. All rights reserved.
+          </div>
+          <div className="text-neutral-400 text-sm text-center">
+            <div className="flex items-center justify-center space-x-4">
+              <span>SECP: 0313853</span>
+              <span>•</span>
+              <span>NTN: H979568</span>
+            </div>
           </div>
           <div className="text-neutral-400 text-sm">
             <span className="bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent font-semibold">
               Build. Ship. Scale.
             </span>
-          </div>
-          <div className="text-neutral-400 text-sm">
-            Crafted with ❤️ by Nest Craft
           </div>
         </motion.div>
       </div>
