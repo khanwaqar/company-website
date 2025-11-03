@@ -71,8 +71,8 @@ export default function ContactPage() {
     {
       icon: FaCalendarAlt,
       title: "Book a Call",
-      description: "15-min free consultation",
-      action: "https://calendly.com/your-calendar",
+      description: "30-min free consultation",
+      action: "https://calendly.com/waqar-nestcraftsol/30min",
       color: "from-blue-500 to-blue-600"
     },
     {
