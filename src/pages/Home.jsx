@@ -96,7 +96,7 @@ export default function Home() {
   ];
 
   const stats = [
-    { value: 150, label: "Projects Delivered" },
+    { value: 15, label: "Projects Delivered" },
     { value: 98, label: "Client Satisfaction Rate" },
     { value: 12, label: "Years Experience" },
     { value: 50, label: "Expert Team Members" },

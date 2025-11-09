@@ -205,7 +205,7 @@ export default function ServicesPage() {
           className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-3xl mx-auto mb-12"
         >
           {[
-            { number: "150+", label: "Projects Delivered", icon: "🚀" },
+            { number: "15+", label: "Projects Delivered", icon: "🚀" },
             { number: "98%", label: "Client Satisfaction", icon: "⭐" },
             { number: "6-10", label: "Weeks to Launch", icon: "⚡" },
             { number: "24/7", label: "Support", icon: "🛡️" }
