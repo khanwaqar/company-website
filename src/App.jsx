@@ -11,6 +11,8 @@ import Contact from './pages/ContactUs'
 import AboutPage from './pages/AboutPage'
 import NotFound from './pages/NotFound'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import WhatsAppChat from './components/WhatsappChat'
+import TawkTo from './components/TawkTo'
 
 // 🔥 CLEANED: No trailing spaces anywhere
 const siteConfig = {
@@ -146,6 +148,8 @@ function Layout() {
             <PageWrapper><NotFound /></PageWrapper>
           } />
         </Routes>
+        {/* <WhatsAppChat /> */}
+         <TawkTo />
       </AnimatePresence>
       <Footer />
     </div>

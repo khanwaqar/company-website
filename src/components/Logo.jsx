@@ -1,5 +1,6 @@
 // components/Logo.jsx
 import { motion } from 'framer-motion'
+import NestcraftLogo from '../assets/logo/logo.svg?react'
 
 export default function Logo({ variant = "default", size = "md", className = "" }) {
   const sizes = {
@@ -9,27 +10,24 @@ export default function Logo({ variant = "default", size = "md", className = "" 
     xl: 'w-16 h-16'
   }
 
-  // SVG content as a React component
-  const LogoSVG = () => (
-    <svg className="w-1/2 h-1/2 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2L4 7V21L12 17L20 21V7L12 2Z" stroke="currentColor" strokeWidth="2" fill="none"/>
-      <path d="M8 12L12 9L16 12" stroke="currentColor" strokeWidth="2" fill="none"/>
-    </svg>
+  // SVG content as a React component (no wrapper box)
+  const LogoSVG = ({ className = '' }) => (
+    <NestcraftLogo className={`w-full h-full fill-current ${className}`} />
   )
 
   const variants = {
-    // Main logo with nest icon
+    // Compact logo with icon + text
     default: (
       <motion.div
         whileHover={{ scale: 1.05 }}
         className={`flex items-center space-x-3 ${className}`}
       >
-        <div className={`${sizes[size]} bg-gradient-to-r from-orange-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg`}>
-          <LogoSVG />
+        <div className={`${sizes[size]} flex items-center justify-center`}>
+          <LogoSVG className="text-gray-900 dark:text-white" />
         </div>
         <div className="flex flex-col">
-          <span className="font-bold text-gray-900 leading-none">NestCraft</span>
-          <span className="text-xs text-gray-600 leading-none">Solutions</span>
+          <span className="font-bold text-gray-900 dark:text-white leading-none">NestCraft</span>
+          <span className="text-xs text-gray-600 dark:text-gray-300 leading-none">Solutions</span>
         </div>
       </motion.div>
     ),
@@ -47,44 +45,55 @@ export default function Logo({ variant = "default", size = "md", className = "" 
       </motion.div>
     ),
 
-    // Icon only
+    // Icon only (bare SVG)
     icon: (
       <motion.div
         whileHover={{ scale: 1.1, rotate: 5 }}
-        className={`${sizes[size]} bg-gradient-to-r from-orange-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg ${className}`}
+        className={`${sizes[size]} flex items-center justify-center ${className}`}
       >
-        <LogoSVG />
+        <LogoSVG className="text-gray-900 dark:text-white" />
       </motion.div>
     ),
 
-    // Full name
+    // Full name with icon
     full: (
       <motion.div
         whileHover={{ scale: 1.02 }}
         className={`flex items-center space-x-3 ${className}`}
       >
-        <div className={`${sizes[size]} bg-gradient-to-r from-orange-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg`}>
-          <LogoSVG />
+        <div className={`${sizes[size]} flex items-center justify-center`}>
+          <LogoSVG className="text-gray-900 dark:text-white" />
         </div>
         <div className="flex flex-col">
-          <span className="text-xl font-bold text-gray-900">Nest Craft</span>
-          <span className="text-sm text-gray-600">Solutions</span>
+<span className="text-xl font-bold bg-gradient-to-r from-orange-700 to-blue-700 bg-clip-text text-transparent">
+  Nest Craft
+</span>
+<span className="text-sm font-medium bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
+  Solutions
+</span>
+
+
         </div>
       </motion.div>
     ),
 
-    // Full name dark version
+    // Full name dark variant
     full_dark: (
       <motion.div
         whileHover={{ scale: 1.02 }}
         className={`flex items-center space-x-3 ${className}`}
       >
-        <div className={`${sizes[size]} bg-gradient-to-r from-orange-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg`}>
-          <LogoSVG />
+        <div className={`${sizes[size]} flex items-center justify-center`}>
+          <LogoSVG className="text-white" />
         </div>
         <div className="flex flex-col">
-          <span className="text-xl font-bold text-gray-200">Nest Craft</span>
-          <span className="text-sm text-gray-100">Solutions</span>
+         <span className="text-xl font-bold bg-gradient-to-r from-orange-500 to-blue-500 bg-clip-text text-transparent">
+  Nest Craft
+</span>
+<span className="text-sm font-medium bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">
+  Solutions
+</span>
+
         </div>
       </motion.div>
     )
